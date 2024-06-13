@@ -1,0 +1,11 @@
+version: '3'
+
+tasks:
+  build:
+    cmd: go build -o ./bin/userSvc .
+    silent: true
+  run: 
+    deps:
+      - build
+    cmd: ./bin/userSvc
+    silent: true
