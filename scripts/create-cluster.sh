@@ -1,6 +1,15 @@
-# Create Kind cluster
-kind create cluster --name deliverytn-sandbox
+#!/bin/bash
+# deps: setup-linux.sh
 
+#? check the kind config for the name
+CLUSTER_NAME="deliverytn-sandbox" 
+
+# Create Kind Sandbox cluster
+kind create cluster --config ../infra/k8s/kind-cluster.yml
+echo "Sandbox Cluster setup complete"
+
+# Use The cluster with:
+kubectl cluster-info --context $CLUSTER_NAME
 
 
 # # Install Crossplane

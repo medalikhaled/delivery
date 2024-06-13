@@ -1,0 +1,19 @@
+version: '3'
+
+tasks:
+  kafka-create:
+    # git clone https://github.com/rafaelmnatali/kafka-k8s.git
+    cmd: kubectl apply -f infra/k8s/local-kafka.yaml
+    silent: true
+  kafka-destroy:
+    cmd: kubectl delete namespace kafka
+    silent: true
+  kafka-logs:
+    cmd: kubectl logs kafka-0 --namespace kafka
+    silent: true
+  kafka-exec:
+    cmd: kubectl exec -it kafka-0 --namespace kafka -- bash
+    silent: true
+  kafka-expose:
+    cmd: kubectl port-forward kafka-0 9092:9092 --namespace kafka
+    silent: true
